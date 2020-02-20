@@ -1,0 +1,23 @@
+Homework: Clearing Cookies and Incognito Mode
+
+
+Differences you notice in incognito or private mode.
+
+In the "Application Tab"
+
+Local Storage - All field are devoid on any data
+Session Storage - All field are devoid on any data
+
+Cache Storage - All field are devoid on any data
+Applicaiton Storage - All field are devoid on any data
+
+ALL Background Services (Timestamp, Event, Origin,...etc.)-All field are devoid on any data
+
+
+
+
+Why one might want to use this mode (Incognito Mode for Chrome) and how you can see it used for testing?
+
+An SQAE would want to uses the "incognito mode" to test the website; without the tester's admin browser history being remembered
+ on the browser. This is ideal for testing websites as "incognito mode" makes it possible to log into a website site as a “test” user.This will allow the SQAE 
+to view the product just as the clients will see it, and identify any tech or setup issues that need to be resolved.
