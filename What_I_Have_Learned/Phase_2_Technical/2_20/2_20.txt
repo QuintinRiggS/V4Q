@@ -1,0 +1,95 @@
+TITLE: How TO: cURL API Testing
+
+Command (Input): C:\Users\qtrig>curl --version
+
+Output : curl 7.55.1 (Windows) libcurl/7.55.1 WinSSL
+Release-Date: [unreleased]
+Protocols: dict file ftp ftps http https imap imaps pop3 pop3s smtp smtps telnet tftp
+Features: AsynchDNS IPv6 Largefile SSPI Kerberos SPNEGO NTLM SSL
+
+Base URL: https://api.github.com
+
+
+Get a users information
+
+
+Command (Input) C:\Users\qtrig>curl --include https://api.github.com/users/QuintinRiggs
+Output (Status) : HTTP/1.1 200 OK
+
+Command (Input) C:\Users\qtrig>curl --include https://api.github.com/users/QuintinRiggsXXX
+Output (Status): HTTP/1.1 404 Not Found
+Get a users information (with authentication)
+
+Command (Input): C:\Users\qtrig>curl --include --user "QuintinRiggs" https://api.github.com/users/QuintinRiggs
+Output (): Enter host password for user 'QuintinRiggs':
+
+
+SECTION: Create a Gist for a user (2 Generates .png)
+
+
+Important Lesson: GET is used to request data from a specified resource.
+				  POST is used to send data to a server to create/update a resource.
+
+Command (Input): C:\Users\qtrig>curl --user "QuintinRiggs" --data "{\"description\":\"Created via API\",\"public\":\"true\",\"files\":{\"file1.txt\":{\"content\":\"Demo\"}}}" https://api.github.com/gists
+Password (Required): Enter host password for user 'QuintinRiggs':
+
+Command (Input): C:\Users\qtrig>curl --include --user "QuintinRiggs" https://api.github.com/users/QuintinRiggs
+Password (Required): Enter host password for user 'QuintinRiggs':
+
+
+SECTION: List all Gists for a user
+
+
+Command (Input): C:\Users\qtrig>curl --user "QuintinRiggs" https://api.github.com/users/QuintinRiggs/gists
+Password (Required): Enter host password for user 'QuintinRiggs':
+
+First url Value (): https://api.github.com/gists/d11fa2dc710737d44916edef91ec7afb
+What you see?
+
+Id Value (<SAVED ID>): d11fa2dc710737d44916edef91ec7afb
+
+
+SECTION: Edit a Gist for a user (1 Generates .png)
+
+
+Command (Input): C:\Users\qtrig>curl -X PATCH --user "QuintinRiggS" --data "{\"description\":\"Created via APIv3\",\"public\":\"true\",\"files\":{\"file1.txt\":{\"content\":\"DemoXYZ\"}}}" https://api.github.com/gists/d11fa2dc710737d44916edef91ec7afb
+Password (Required): Enter host password for user 'QuintinRiggS':
+
+url Value:
+
+What do you see?
+Confirm the Gist was Updated (Screen Shot): Content is DemoXYZ
+
+I WANT TO REALLY BE A SUPERSTAR:
+
+Command (Input): C:\Users\qtrig>curl --user "QuintinRiggS" https://api.github.com/users/QuintinRiggS/gists
+Password (Required): Enter host password for user 'QuintinRiggS':
+Checked : https://gist.github.com/QuintinRiggS
+
+Screen Shot Verifies changes: 
+
+
+Delete a Gist for a user
+
+
+C:\Users\qtrig>curl --include -X DELETE --user "QuintinRiggS"  https://api.github.com/gists/d11fa2dc710737d44916edef91ec7afb
+Enter host password for user 'QuintinRiggS':
+Important Part: HTTP/1.1 204 No Content
+Get a single gist
+curl --include --user "QuintinRiggS"  https://api.github.com/gists/d11fa2dc710737d44916edef91ec7afb
+Enter host password for user 'QuintinRiggS':
+HTTP/1.1 404 Not Found
+
+
+Get a specific Gist for a user
+
+
+List all Gists for a user
+C:\Users\qtrig>curl --user "QuintinRiggS" https://api.github.com/users/QuintinRiggS/gist
+Enter host password for user 'QuintinRiggS':
+{
+  "message": "Not Found",
+  "documentation_url": "https://developer.github.com/v3"
+} 
+
+What do you see? I do not have any Gists.
